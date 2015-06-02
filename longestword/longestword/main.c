@@ -46,6 +46,8 @@ int main(void) {
 
 #include  <stdio.h>
 #include  <ctype.h>
+#include <string.h>
+# define _SPACE 0x20
 
 int  StrCmpare(const char *s1, const char *s2);
 int main (void);
@@ -64,19 +66,29 @@ int StrCmpare(const char *s1, const char *s2)
 
 int main(void)
 {
-    //char s[10];
+    char s[16];
     char line[235886][30];
-    int i, n;
-        FILE *fp;
-    char *fname = "/usr/share/dict/words";
-    /*    char s[100];
+    int i, n,cnt;
+   
+    printf("16個の英文字を入力ください（スペースなしで）：");
+    scanf("%s",s);
+    //char array[7] = "abcdef";
+    //char *ptr = "ghijkl";
     
-    for(i=0;i<=15;i++){
-        scanf("%s",&s[i]);
-        printf("i=%d",i);
-        printf("(%s)\n",&s[i]);
+    printf("一文字ずつ表示する：\n");
+    for (cnt = 0; s[cnt] != '\0'; cnt++) {
+        printf("%c\n",s[cnt]);
+    }
+    
+    
+   /* printf("charポインタを、一文字ずつ表示する\n");
+    for (cnt = 0; *(ptr + cnt) != '\0'; cnt++) {
+        printf("%c\n",*(ptr + cnt));
     }*/
-
+    
+    
+    FILE *fp;
+    char *fname = "/usr/share/dict/words";
     
     fp = fopen(fname, "r");
     if( fp == NULL ){
@@ -92,7 +104,7 @@ int main(void)
     for(i=0; i<n; i++){
         
         line[i][0]=tolower(line[i][0]);
-        printf("%s", line[i]);
+       // printf("%s", line[i]);
     }
     
     /* if (fp) {
