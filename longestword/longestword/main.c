@@ -35,15 +35,8 @@ int main(void)
     char s[16];
     char line[235886][30];
     int i,n;
- 
-
-    printf("16個の英文字を入力ください（スペースなしで）：");
-    scanf("%s",s);
-   
-    sortWord(s);
-
-    printf("アルファベット順に並び替えた文字列は%sです\n",s);
-    
+  
+    //辞書ソート
     FILE *fp;
     char *fname = "/usr/share/dict/words";
     
@@ -52,7 +45,7 @@ int main(void)
         printf( "%sファイルが開けません\n", fname );
         return -1;
     }
-   
+    
     for(i=0; fgets(line[i],30,fp)!=NULL; i++);
     n=i;
     
@@ -61,8 +54,21 @@ int main(void)
     for(i=0; i<n; i++){
         
         line[i][0]=tolower(line[i][0]);
-       // printf("%s", line[i]);
+        sortWord(line[i]);
+        // printf("%s", line[i]);
     }
-   // printf("%s", line[235885]);
+
+    //辞書ソート終わり
+    
+    //入力始まり
+    printf("16個の英文字を入力ください（スペースなしで）：");
+    scanf("%s",s);
+   
+    sortWord(s);
+
+    printf("アルファベット順に並び替えた文字列は%sです\n",s);
+    //入力及びソート終わり
+    
+    //比較
     
 }
