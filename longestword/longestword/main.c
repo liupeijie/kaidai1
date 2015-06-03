@@ -34,7 +34,9 @@ int main(void)
 {
     char s[16];
     char line[235886][30];
-    int i,n;
+   //  char *temp;
+    int i,n,j;
+    int k,t=0;
   
     //辞書ソート
     FILE *fp;
@@ -47,9 +49,10 @@ int main(void)
     }
     
     for(i=0; fgets(line[i],30,fp)!=NULL; i++);
+  //  for(i=0; fgets(temp[i],30,fp)!=NULL; i++);
     n=i;
     
-    fclose( fp );
+   
     
     for(i=0; i<n; i++){
         if(strlen(line[i])>17){
@@ -57,8 +60,9 @@ int main(void)
             //printf("%s",line[i]);
         }
         line[i][0]=tolower(line[i][0]);
+      //  temp=line[i];
         sortWord(line[i]);
-         printf("%s", line[i]);
+       // printf("%c\n", line[i][1]);
     }
 
     //辞書ソート終わり
@@ -73,9 +77,39 @@ int main(void)
     //入力及びソート終わり
     
     //比較　16文字以下のみ
-    
+    for(j=17;j>1;j--){
+        for(i=0; i<n; i++){
+            k=1;t=0;
+            if(strlen(line[i])==j){
+                
+                do{
+                    
+                    if(line[i][k]==s[t]){
+                        t++;
+                        k++;
+                        
+                    }else{
+                        t++;
+                        //printf("%c\n",line[i][k]);
+                    }
+                    
+                }while(t<16 && k<j);
+                if(k==j){
+                    printf("%s\n",line[i]);
+                    goto LABEL;
+                }
+            }
+        }
+    }
+LABEL:
     
     
     //行数によって、正しい単語を出力
-    
+    printf("i=%d",i);
+    for(k=0;k<=i ; k++){
+        fgets(line[k],30,fp);
+    }
+    printf("%s\n",line[i]);
+
+     fclose( fp );
 }
