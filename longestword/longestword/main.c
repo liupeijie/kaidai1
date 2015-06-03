@@ -52,10 +52,13 @@ int main(void)
     fclose( fp );
     
     for(i=0; i<n; i++){
-        
+        if(strlen(line[i])>17){
+            line[i][0]='\0';
+            //printf("%s",line[i]);
+        }
         line[i][0]=tolower(line[i][0]);
         sortWord(line[i]);
-        // printf("%s", line[i]);
+         printf("%s", line[i]);
     }
 
     //辞書ソート終わり
@@ -69,6 +72,10 @@ int main(void)
     printf("アルファベット順に並び替えた文字列は%sです\n",s);
     //入力及びソート終わり
     
-    //比較
+    //比較　16文字以下のみ
+    
+    
+    
+    //行数によって、正しい単語を出力
     
 }
