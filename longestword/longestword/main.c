@@ -34,7 +34,8 @@ int main(void)
 {
     char s[16];
     char line[235886][30];
-   //  char *temp;
+
+    char temp[30];
     int i,n,j;
     int k,t=0;
   
@@ -48,10 +49,10 @@ int main(void)
         return -1;
     }
     
-    for(i=0; fgets(line[i],30,fp)!=NULL; i++);
-  //  for(i=0; fgets(temp[i],30,fp)!=NULL; i++);
+    for(i=0; fgets(line[i],29,fp)!=NULL; i++);
+   
     n=i;
-    
+    //printf("%s\n",line[62687]);
    
     
     for(i=0; i<n; i++){
@@ -60,7 +61,7 @@ int main(void)
             //printf("%s",line[i]);
         }
         line[i][0]=tolower(line[i][0]);
-      //  temp=line[i];
+     //   temp[i]=line[i];
         sortWord(line[i]);
        // printf("%c\n", line[i][1]);
     }
@@ -75,7 +76,8 @@ int main(void)
 
     printf("アルファベット順に並び替えた文字列は%sです\n",s);
     //入力及びソート終わり
-    
+    fclose( fp );
+
     //比較　16文字以下のみ
     for(j=17;j>1;j--){
         for(i=0; i<n; i++){
@@ -95,7 +97,7 @@ int main(void)
                     
                 }while(t<16 && k<j);
                 if(k==j){
-                    printf("%s\n",line[i]);
+                   // printf("%s\n",line[i]);
                     goto LABEL;
                 }
             }
@@ -105,11 +107,15 @@ LABEL:
     
     
     //行数によって、正しい単語を出力
-    printf("i=%d",i);
-    for(k=0;k<=i ; k++){
-        fgets(line[k],30,fp);
+    printf("これだ！！！the longest word:");
+    k=0;
+    fp = fopen(fname, "r");
+    while(k<=i){
+        fgets( temp, 30, fp );
+                if(k==i){
+            printf( "%s", temp );
+        }
+        k++;
     }
-    printf("%s\n",line[i]);
-
      fclose( fp );
 }
